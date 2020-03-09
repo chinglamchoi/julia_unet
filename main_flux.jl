@@ -6,9 +6,7 @@ using CSV, FileIO
 using Images
 using BSON
 CuArrays.allowscalar(false)
-
 include("unet_flux.jl")
-
 
 img_train_path, img_test_path = "C:/Users/CCL/unet/TCGA/imgs/train/new/", "C:/Users/CCL/unet/TCGA/imgs/test/"
 mask_train_path, mask_test_path = "C:/Users/CCL/unet/TCGA/masks/train/new/", "C:/Users/CCL/unet/TCGA/masks/test/"
@@ -16,7 +14,7 @@ mask_train_path, mask_test_path = "C:/Users/CCL/unet/TCGA/masks/train/new/", "C:
 train, test = gpu.(collect(CSV.read("C:/Users/CCL/unet/TCGA/imgs/train.csv", header=["fname"]).fname)), gpu.(collect(CSV.read("C:/Users/CCL/unet/TCGA/imgs/test.csv", header=["fname"]).fname))
 train_size, test_size = length(train), length(test)
 
-mb_size = 24
+mb_size = 1
 mb_idxs = collect(partition(1:train_size, mb_size))
 
 function load_me(img_path, mask_path, path, idxs, testing)
