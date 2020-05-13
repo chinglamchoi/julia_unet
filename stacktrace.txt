@@ -1,0 +1,40 @@
+ERROR: LoadError: scalar getindex is disallowed
+Stacktrace:
+ [1] error(::String) at .\error.jl:33
+ [2] assertscalar(::String) at C:\Users\CCL\.julia\packages\GPUArrays\1wgPO\src\indexing.jl:14
+ [3] getindex at C:\Users\CCL\.julia\packages\GPUArrays\1wgPO\src\indexing.jl:54 [inlined]
+ [4] _getindex at .\abstractarray.jl:1004 [inlined]
+ [5] getindex at .\abstractarray.jl:981 [inlined]
+ [6] hash(::CuArray{Float32,4,Nothing}, ::UInt64) at .\abstractarray.jl:2203
+ [7] hash at .\hashing.jl:18 [inlined]
+ [8] hashindex at .\dict.jl:168 [inlined]
+ [9] ht_keyindex(::Dict{Any,Any}, ::CuArray{Float32,4,Nothing}) at .\dict.jl:282
+ [10] get(::Dict{Any,Any}, ::CuArray{Float32,4,Nothing}, ::Nothing) at .\dict.jl:500
+ [11] (::Zygote.var"#876#877"{Zygote.Context,IdDict{Any,Any},CuArray{Float32,4,Nothing}})(::Nothing) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\lib\base.jl:44
+ [12] (::Zygote.var"#2375#back#878"{Zygote.var"#876#877"{Zygote.Context,IdDict{Any,Any},CuArray{Float32,4,Nothing}}})(::Nothing) at C:\Users\CCL\.julia\packages\ZygoteRules\6nssF\src\adjoint.jl:49
+ [13] #fmap#53 at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\functor.jl:37 [inlined]
+ [14] (::typeof(∂(#fmap#53)))(::CuArray{Float32,4,Nothing}) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface2.jl:0
+ [15] fmap at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\functor.jl:36 [inlined]
+ [16] (::typeof(∂(fmap)))(::CuArray{Float32,4,Nothing}) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface2.jl:0
+ [17] gpu at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\functor.jl:108 [inlined]
+ [18] (::typeof(∂(gpu)))(::CuArray{Float32,4,Nothing}) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface2.jl:0
+ [19] |> at .\operators.jl:854 [inlined]
+ [20] (::typeof(∂(|>)))(::CuArray{Float32,4,Nothing}) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface2.jl:0
+ [21] (::typeof(∂(loss)))(::Float32) at C:\Users\CCL\unet\main_flux2.jl:37
+ [22] #157 at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\lib\lib.jl:156 [inlined]
+ [23] #297#back at C:\Users\CCL\.julia\packages\ZygoteRules\6nssF\src\adjoint.jl:49 [inlined]
+ [24] #17 at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\optimise\train.jl:88 [inlined]
+ [25] (::typeof(∂(λ)))(::Float32) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface2.jl:0
+ [26] (::Zygote.var"#38#39"{Zygote.Params,Zygote.Context,typeof(∂(λ))})(::Float32) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface.jl:101
+ [27] gradient(::Function, ::Zygote.Params) at C:\Users\CCL\.julia\packages\Zygote\oMScO\src\compiler\interface.jl:47
+ [28] macro expansion at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\optimise\train.jl:87 [inlined]
+ [29] macro expansion at C:\Users\CCL\.julia\packages\Juno\f8hj2\src\progress.jl:134 [inlined]
+ [30] #train!#12(::Flux.Optimise.var"#18#26", ::typeof(Flux.Optimise.train!), ::typeof(loss), ::Zygote.Params, ::Array{Tuple{CuArray{Float32,4,Nothing},CuArray{Float32,4,Nothing}},1}, ::ADAM) at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\optimise\train.jl:80
+ [31] train!(::Function, ::Zygote.Params, ::Array{Tuple{CuArray{Float32,4,Nothing},CuArray{Float32,4,Nothing}},1}, ::ADAM) at C:\Users\CCL\.julia\packages\Flux\NpkMm\src\optimise\train.jl:78
+ [32] top-level scope at C:\Users\CCL\unet\main_flux2.jl:52
+ [33] include at .\boot.jl:328 [inlined]
+ [34] include_relative(::Module, ::String) at .\loading.jl:1105
+ [35] include(::Module, ::String) at .\Base.jl:31
+ [36] exec_options(::Base.JLOptions) at .\client.jl:287
+ [37] _start() at .\client.jl:460
+in expression starting at C:\Users\CCL\unet\main_flux2.jl:47
